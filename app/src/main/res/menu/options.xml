@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/menu1"></item>
+    <item
+        android:id="@+id/History"
+        android:title="@string/menu2"></item>
+    <item
+        android:id="@+id/Promotion"
+        android:title="@string/menu3"></item>
+    <item
+        android:id="@+id/logout"
+        android:title="@string/menu4"></item>
+
+</menu>

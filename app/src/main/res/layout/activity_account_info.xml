@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountInfo"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/title7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/title7"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/Userfname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/UserMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="34dp"
+        android:ems="10"
+        android:hint="@string/Email"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/UserCell"
+        app:layout_constraintStart_toStartOf="@+id/UserLname"
+        app:layout_constraintTop_toBottomOf="@+id/UserLname"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/UserCell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="66dp"
+        android:ems="10"
+        android:hint="@string/Phone"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editinfo"
+        app:layout_constraintStart_toStartOf="@+id/UserMail"
+        app:layout_constraintTop_toBottomOf="@+id/UserMail"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/editinfo"
+        android:layout_width="168dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="41dp"
+        android:text="@string/editbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Userfname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="@string/fname"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/UserLname"
+        app:layout_constraintStart_toStartOf="@+id/title7"
+        app:layout_constraintTop_toBottomOf="@+id/title7"
+        tools:ignore="Autofill"/>
+
+    <EditText
+        android:id="@+id/UserLname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="27dp"
+        android:ems="10"
+        android:hint="@string/lname"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/UserMail"
+        app:layout_constraintEnd_toEndOf="@+id/Userfname"
+        app:layout_constraintTop_toBottomOf="@+id/Userfname"
+        tools:ignore="Autofill"/>
+
+
+</android.support.constraint.ConstraintLayout>

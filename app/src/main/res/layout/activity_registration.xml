@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration"
+    tools:layout_editor_absoluteY="81dp">
+
+    <EditText
+        android:id="@+id/RegUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="@string/Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/RegPass"
+        app:layout_constraintStart_toStartOf="@+id/RegLname"
+        app:layout_constraintTop_toBottomOf="@+id/RegLname"
+        tools:ignore="Autofill" />
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="14dp"
+        android:gravity="center_horizontal"
+        android:text="@string/title2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/RegFname"
+        app:layout_constraintStart_toStartOf="@+id/RegFname"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/RegPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="@string/hint2"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/RegCell"
+        app:layout_constraintStart_toStartOf="@+id/RegUser"
+        app:layout_constraintTop_toBottomOf="@+id/RegUser"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="195dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="71dp"
+        android:gravity="center_horizontal"
+        android:text="@string/Registerbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegCell" />
+
+    <EditText
+        android:id="@+id/RegCell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="@string/Phone"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+        app:layout_constraintStart_toStartOf="@+id/RegPass"
+        app:layout_constraintTop_toBottomOf="@+id/RegPass"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/RegFname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="@string/fname"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/RegLname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title2"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/RegLname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="@string/lname"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/RegUser"
+        app:layout_constraintStart_toStartOf="@+id/RegFname"
+        app:layout_constraintTop_toBottomOf="@+id/RegFname"
+        tools:ignore="Autofill" />
+
+
+</android.support.constraint.ConstraintLayout>
