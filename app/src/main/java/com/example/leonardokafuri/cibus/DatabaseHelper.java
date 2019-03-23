@@ -6,10 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.UUID;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
@@ -90,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         }
     }
-
+    int userId;
     public Cursor login(String userName, String password){
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         String hashPassword;
@@ -98,9 +96,35 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         hashPassword = get_SHA_256_SecurePassword(password);
         String query = "SELECT * FROM User WHERE AccountName = '" + userName + "' AND password = '" + hashPassword + "'";
         Cursor c = sqLiteDatabase.rawQuery(query,null);
-
         return c;
 
+    }
+
+    /*public void getUserId(String username,String password){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String hashPassword;
+        hashPassword = "";
+        hashPassword = get_SHA_256_SecurePassword(password);
+        String query1 = "SELECT UserId FROM User WHERE AccountName = '" + username + "' AND password = '" + hashPassword + "'";
+        Cursor c1 = sqLiteDatabase.rawQuery(query1,null);
+        userId = c1.getString(0);
+    }*/
+
+    public boolean saveCC(String number,String name,String date,String type){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("UserId",userId);
+        values.put("CardNumber",number);
+        values.put("CardName",name);
+        values.put("CardExpireDate",date);
+        values.put("CardType",type);
+        long r = db.insert("CreditCard",null,values);
+        if(r == -1){
+            return  false;
+        }
+        else{
+            return true;
+        }
     }
 
     public Cursor getUserByEmail(String email){
@@ -109,6 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor c = sqLiteDatabase.rawQuery(query,null);
         return c;
     }
+
 
     public String createResetToken(Integer UserId){
         SQLiteDatabase db = this.getWritableDatabase();

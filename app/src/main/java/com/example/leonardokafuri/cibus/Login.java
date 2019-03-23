@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity {
                 else{
                     Intent i = new Intent(Login.this, ConfirmAddress.class);
                     c.moveToFirst();
+                    dbh.userId = c.getInt(0);
                     i.putExtra("userid",c.getInt(0));
                     startActivity(i);
                 }
