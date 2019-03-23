@@ -1,7 +1,9 @@
 package com.example.leonardokafuri.cibus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,7 @@ public class Login extends AppCompatActivity {
         final Button Login = findViewById(R.id.login);
         final EditText userName = findViewById(R.id.username);
         final EditText password = findViewById(R.id.CardNum);
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this); // created a shared pref to pass the user id
         Intent i = getIntent();
         String value = i.getStringExtra("registered");
         if(value != null && !value.isEmpty())
@@ -58,6 +61,12 @@ public class Login extends AppCompatActivity {
                     c.moveToFirst();
                     dbh.userId = c.getInt(0);
                     i.putExtra("userid",c.getInt(0));
+
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    int id = c.getInt(0); // getting the user id that is currently using the app and saving its id on the shared pref file
+                    editor.putInt("key1",id);
+                    editor.commit();
+
                     startActivity(i);
                 }
                 //then start the confirm address activity
