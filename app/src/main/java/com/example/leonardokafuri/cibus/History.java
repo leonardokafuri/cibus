@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.example.leonardokafuri.cibus.ui.Restaurants;
 
 public class History extends AppCompatActivity {
 

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.leonardokafuri.cibus.ui.Restaurants;
+
 public class ConfirmAddress extends AppCompatActivity {
 
     @Override
@@ -19,7 +21,7 @@ public class ConfirmAddress extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //check the address and load the restaurants that are close by only
-                startActivity(new Intent(ConfirmAddress.this,Restaurants.class));
+                startActivity(new Intent(ConfirmAddress.this, Restaurants.class));
             }
         });
 

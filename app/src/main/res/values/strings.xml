@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Cibus</string>
+    <string name="default_text_holder">text</string>
     <string name="title">Welcome to Cibus</string>
     <string name="hint1">Username</string>
     <string name="hint2">Password</string>
@@ -21,7 +22,7 @@
     <string name="NewPass">New Password</string>
     <string name="sendcode">Send code</string>
     <string name="confirmaddrs">Confirm delivery Address</string>
-    <string name="imgdes">An image</string>
+    <string name="logo">restaurant logo</string>
     <string name="order">Order</string>
     <string name="title4">Order History</string>
     <string name="title5">Your order</string>
@@ -44,10 +45,10 @@
     <string name="wsfood2">Tuscan Chicken Pasta($15.99)</string>
     <string name="wsfood3">Legendary Burger($9.99)</string>
     <string name="menu1">Account Settings</string>
-    <string name ="menu2">Order History</string>
+    <string name="menu2">Order History</string>
     <string name="menu3">Promotion</string>
     <string name="menu4">Logout</string>
-   <string name="fname">First Name</string>
+    <string name="fname">First Name</string>
     <string name="lname">Last Name</string>
     <string name="type">Card Type</string>
     <string name="expr">Expire date</string>
@@ -98,4 +99,6 @@
     <string name="wsFood6">Nat\'s Beef Dip Combo ($15.49)</string>
     <string name="wsFood7">Dippin\' with Caesar ($13.99)</string>
     <string name="saveCC">Save Credit Card</string>
+    <string name="hint_for_userinput_unit">Integer</string>
+    <string name="padding_horizontal_edittext">10dp</string>
 </resources>

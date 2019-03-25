@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.leonardokafuri.cibus">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.RestaurantMenu"></activity>
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +22,7 @@
         <activity android:name=".Registration" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".ConfirmAddress" />
-        <activity android:name=".Restaurants" />
+        <activity android:name=".ui.Restaurants" />
         <activity android:name=".WhiteSpot" />
         <activity android:name=".OrderConfirmation" />
         <activity android:name=".Payment" />
@@ -31,9 +34,7 @@
         <activity android:name=".Subway" />
         <activity android:name=".Kfc" />
         <activity android:name=".Dominos" />
-        <activity android:name=".Boston"></activity>
-
+        <activity android:name=".Boston" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

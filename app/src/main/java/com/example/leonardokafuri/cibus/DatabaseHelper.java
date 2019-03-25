@@ -8,18 +8,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
+
     final static String DATABASE_NAME = "Cibus.db";
     final static int DATABASE_VERSION = 1;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         //creating User table
         String queryUser = "Create Table User(UserId INTEGER PRIMARY KEY," +
                             "FirstName TEXT, LastName TEXT, Email TEXT, Phone TEXT, PromotionCode INTEGER, AccountName TEXT UNIQUE, Password TEXT )";
@@ -208,6 +212,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         return generatedPassword;
     }
+
 
 }
 

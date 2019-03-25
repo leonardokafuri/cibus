@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.connection;
 
 /*
  * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
