@@ -15,6 +15,7 @@ import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.datamodel.Menu;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantMenu_Adapter
@@ -90,6 +91,11 @@ public class RestaurantMenu_Adapter
         }
 
         return output;
+    }
+
+    public  int[]  getOrderQuantity(){
+
+        return  selectionList;
     }
 
 

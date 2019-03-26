@@ -13,8 +13,6 @@ import android.widget.Toast;
 import com.example.leonardokafuri.cibus.ui.Restaurants;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
-import java.lang.reflect.Array;
-
 public class ConfirmAddress extends AppCompatActivity {
 
     private static final String LOG_TAG = ConfirmAddress.class.getSimpleName();
@@ -99,11 +97,15 @@ public class ConfirmAddress extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(hasValuesChangedByUser()==true){
-                    //save to database
-                    String[] defaultAddr = saveNewValuesIntoString();
+
+                    if(ifUserEnteredAllField()){
+                        //save to database
+                        String[] defaultAddr = saveNewValuesIntoString();
 
 
-                    dbh.insertNewDefaultAddress(userId,defaultAddr);
+                        dbh.insertNewDefaultAddress(userId,defaultAddr);
+                    }
+
                 }
 
                 enterMainScreenAndDestroyThisActivity();
@@ -119,6 +121,44 @@ public class ConfirmAddress extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean ifUserEnteredAllField(){
+
+        if(province.getText().toString() == ""){
+            msgToUserNeedToFillALl();
+            return false;
+        }else if (city.getText().toString() == ""){
+            msgToUserNeedToFillALl();
+            return false;
+        }else if (streeName.getText().toString() == ""){
+            msgToUserNeedToFillALl();
+            return false;
+        }else if (streetNum.getText().toString() == ""){
+            msgToUserNeedToFillALl();
+            return false;
+        }else if (unitNum.getText().toString() == ""){
+            msgToUserNeedToFillALl();
+            return false;
+        }else if (zipCode.getText().toString() == ""){
+            msgToUserNeedToFillALl();
+            return false;
+        }else if (phoneNum.getText().toString() == ""){
+            msgToUserNeedToFillALl();
+            return false;
+        }
+
+
+
+        return true;
+    }
+
+    private void msgToUserNeedToFillALl(){
+        Toast.makeText(
+                ConfirmAddress.this,
+                "Please enter all field!",
+                Toast.LENGTH_LONG
+                ).show();
     }
 
     private boolean hasValuesChangedByUser(){

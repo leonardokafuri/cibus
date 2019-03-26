@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.leonardokafuri.cibus.AccountInfo;
 import com.example.leonardokafuri.cibus.History;
 import com.example.leonardokafuri.cibus.Login;
+import com.example.leonardokafuri.cibus.OrderConfirmation;
 import com.example.leonardokafuri.cibus.Promotion;
 import com.example.leonardokafuri.cibus.datamodel.Menu;
 import com.example.leonardokafuri.cibus.datamodel.Restaurant;
@@ -107,7 +108,25 @@ public class RestaurantMenu extends AppCompatActivity {
                 public void onClick(View v) {
 
                     //todo, start to work from the totalprice here
-                    Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
+                   // Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
+
+                    int[] orderList = rmAdapter.getOrderQuantity();
+
+                    int counterForOrderList = 0;
+                    Intent openConfirmation = new Intent(RestaurantMenu.this, OrderConfirmation.class);
+
+                    //Han: this is used for the next activity to work out the menus names
+                    openConfirmation.putExtra("startIndexForMenu",startingIndex);
+
+                    openConfirmation.putExtra("lengthOfOrderList", orderList.length);
+                    //Han: store each order in sequence and pass to order conformation screen
+                    for (int i = 0; i < orderList.length; i++) {
+                       openConfirmation.putExtra(String.valueOf(i), orderList[i]);
+                    }
+
+                    startActivity(openConfirmation);
+
+
 
                 }
             });

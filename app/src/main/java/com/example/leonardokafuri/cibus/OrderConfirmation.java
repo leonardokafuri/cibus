@@ -8,19 +8,60 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.leonardokafuri.cibus.utils.TestData;
+
+
+import java.util.ArrayList;
 
 public class OrderConfirmation extends AppCompatActivity {
+
+    //Han: store order number that is passed in from parent activity
+    private int[] orderList;
+    //Han: store menu names
+    private String[] menuList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
         TextView result = findViewById(R.id.result);
+
         Intent intent = getIntent(); // get the intent that was passed to it
+
+
         if(intent!=null)
         {
             String qty = intent.getStringExtra("data"); // get the value that was passed
             result.setText(qty); // setting the textview with the value
+
+            //Han: check this out @Bogdan
+            int startingIndex = intent.getIntExtra("startIndexForMenu", -1);
+
+            int lengthOfOrderList = intent.getIntExtra("lengthOfOrderList",-1);
+
+            orderList = new int[lengthOfOrderList];
+
+            menuList = new String[lengthOfOrderList];
+
+            ArrayList<com.example.leonardokafuri.cibus.datamodel.Menu> tempList
+                    = TestData.getListOfMenus(startingIndex);
+
+            //Han: load menu names to local Sting[]
+            for (int i = 0; i < tempList.size(); i++) {
+                menuList[i] = tempList.get(i).getFoodName();
+            }
+
+            //Han: load order quantity to local int[]
+            for(int i = 0 ; i< lengthOfOrderList; i++){
+                orderList[i] = intent.getIntExtra(String.valueOf(i), 0);
+            }
+
+
+
         }
 
 

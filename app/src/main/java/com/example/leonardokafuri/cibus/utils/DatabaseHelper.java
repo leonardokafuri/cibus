@@ -141,7 +141,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         val.put("City", inputAddress[1]);
         val.put("StreetName",inputAddress[2]);
 
-        val.put("StreetNumber", Integer.valueOf(inputAddress[3]));
+        val.put("StreetNumber", Integer.valueOf(inputAddress[3].toString()));
+
         if(inputAddress[4] == "" ){
             val.put("UnitNumber",0);
         }else{
