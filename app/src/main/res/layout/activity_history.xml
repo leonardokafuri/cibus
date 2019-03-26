@@ -7,7 +7,7 @@
     tools:context=".History">
 
     <TextView
-        android:id="@+id/title4"
+        android:id="@+id/title_confirm_address"
         android:layout_width="188dp"
         android:layout_height="49dp"
         android:layout_marginTop="16dp"

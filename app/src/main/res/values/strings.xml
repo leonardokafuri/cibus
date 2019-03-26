@@ -14,6 +14,8 @@
     <string name="prov">Province</string>
     <string name="city">City</string>
     <string name="zip">Zip code</string>
+    <string name="unitnumber">unit NO.</string>
+    <string name="phonenumber">phone NO.</string>
     <string name="Registerbtn">Register</string>
     <string name="title3">Reset Password</string>
     <string name="ResetInfo">Enter the details of your account with a new password to reset it. Make sure the information matches the one of the account</string>
@@ -101,4 +103,6 @@
     <string name="saveCC">Save Credit Card</string>
     <string name="hint_for_userinput_unit">Integer</string>
     <string name="padding_horizontal_edittext">10dp</string>
+    <string name="btn_skip">Skip to main screen</string>
+    <string name="btn_order">Order</string>
 </resources>

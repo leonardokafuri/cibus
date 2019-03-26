@@ -1,12 +1,14 @@
 package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.leonardokafuri.cibus.AccountInfo;
 import com.example.leonardokafuri.cibus.datamodel.Restaurant;
@@ -31,6 +33,10 @@ public class Restaurants extends AppCompatActivity
 
     Restaurants_Adapter restaurantAdapter;
 
+    private Handler handlerBackPress;
+
+    private int numOfTimesBackButtonPressed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,37 @@ public class Restaurants extends AppCompatActivity
         loadRestaurants.execute();
 
 
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        numOfTimesBackButtonPressed += 1;
+
+        //Han : the 1st time user click back button will pop up a msg,
+        //if user ignore the msg and click 2nd time within 2second after
+        //clicking of 1st on back button, they will be switch back to login screen
+        if(numOfTimesBackButtonPressed <= 1)
+        {
+            Toast.makeText(
+                    this,
+                    "Tap one more time to log out.",
+                    Toast.LENGTH_SHORT).show();
+
+            handlerBackPress = new Handler();
+
+            final Runnable countDownTwoSecond = new Runnable() {
+                @Override
+                public void run() {
+                    numOfTimesBackButtonPressed -= 1;
+                }
+            };
+            handlerBackPress.postDelayed(countDownTwoSecond, 2000);
+        }else{
+            super.onBackPressed();
+        }
 
     }
 

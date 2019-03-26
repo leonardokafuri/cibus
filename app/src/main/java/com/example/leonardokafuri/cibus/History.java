@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.leonardokafuri.cibus.ui.Restaurants;
+import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class History extends AppCompatActivity {
 

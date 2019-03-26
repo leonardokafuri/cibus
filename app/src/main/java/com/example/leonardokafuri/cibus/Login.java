@@ -11,14 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
+
 public class Login extends AppCompatActivity {
 
-    DatabaseHelper dbh;
+    private DatabaseHelper dbh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         dbh = new DatabaseHelper(this);
+
+
         Button Register = findViewById(R.id.register);
         Button Forgot = findViewById(R.id.forgot);
         final Button Login = findViewById(R.id.login);
@@ -59,7 +64,7 @@ public class Login extends AppCompatActivity {
                 else{
                     Intent i = new Intent(Login.this, ConfirmAddress.class);
                     c.moveToFirst();
-                    dbh.userId = c.getInt(0);
+                    dbh.setUserId(c.getInt(0));
                     i.putExtra("userid",c.getInt(0));
 
                     SharedPreferences.Editor editor = sharedPref.edit();

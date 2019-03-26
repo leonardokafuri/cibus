@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.leonardokafuri.cibus.connection.SendMailTLS;
+import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class ForgotPassword extends AppCompatActivity {
 

@@ -1,8 +1,6 @@
 package com.example.leonardokafuri.cibus;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +10,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class Payment extends AppCompatActivity {
     DatabaseHelper dbh;

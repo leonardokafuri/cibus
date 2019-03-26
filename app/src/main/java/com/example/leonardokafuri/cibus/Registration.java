@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.security.NoSuchAlgorithmException;
+import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class Registration extends AppCompatActivity {
 
