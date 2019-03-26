@@ -61,7 +61,6 @@ public class OrderConfirmation extends AppCompatActivity {
             }
 
 
-
         }
 
 

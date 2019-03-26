@@ -125,25 +125,25 @@ public class ConfirmAddress extends AppCompatActivity {
 
     private boolean ifUserEnteredAllField(){
 
-        if(province.getText().toString() == ""){
+        if(province.getText().length() == 0){
             msgToUserNeedToFillALl();
             return false;
-        }else if (city.getText().toString() == ""){
+        }else if (city.getText().length() == 0){
             msgToUserNeedToFillALl();
             return false;
-        }else if (streeName.getText().toString() == ""){
+        }else if (streeName.getText().length() == 0){
             msgToUserNeedToFillALl();
             return false;
-        }else if (streetNum.getText().toString() == ""){
+        }else if (streetNum.getText().length() == 0){
             msgToUserNeedToFillALl();
             return false;
-        }else if (unitNum.getText().toString() == ""){
+        }else if (unitNum.getText().length() == 0){
             msgToUserNeedToFillALl();
             return false;
-        }else if (zipCode.getText().toString() == ""){
+        }else if (zipCode.getText().length() == 0){
             msgToUserNeedToFillALl();
             return false;
-        }else if (phoneNum.getText().toString() == ""){
+        }else if (phoneNum.getText().length() == 0){
             msgToUserNeedToFillALl();
             return false;
         }

@@ -200,7 +200,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     public void insertNewDefaultAddress(int userID, String[] inputAddress){
-        //todo
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
