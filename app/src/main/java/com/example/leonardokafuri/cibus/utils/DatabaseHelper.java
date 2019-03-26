@@ -229,6 +229,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return c;
     }
 
+    public Cursor UpdateInformation(String fname, String lname, String email, String phone, int id)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query ="UPDATE User SET FirstName ='"+fname+"',LastName='"+lname+"',Email='"+email+"',Phone ='"+phone+"' WHERE UserId ="+id+";";
+        Cursor c = sqLiteDatabase.rawQuery(query,null);
+        return c;
+    }
+
 
 
     public void setUserId(int userId) {
@@ -282,11 +290,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public Cursor viewHistory(int id)
     {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        String query ="SELECT * FROM OrderDetail WHERE userId = '" + id + ";'";
+        String query ="SELECT * FROM OrderDetail WHERE UserId = " + id +";";
         Cursor c = sqLiteDatabase.rawQuery(query,null);
         return c;
     }
-
+    public Cursor ViewUserInfo(int id)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query ="SELECT FirstName,LastName,Email,Phone FROM User  WHERE UserId ="+ id + ";";
+        Cursor c = sqLiteDatabase.rawQuery(query,null);
+        return c;
+    }
 
     public String createResetToken(Integer UserId){
         SQLiteDatabase db = this.getWritableDatabase();
