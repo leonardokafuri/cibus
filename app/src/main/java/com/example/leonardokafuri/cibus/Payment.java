@@ -9,14 +9,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.example.leonardokafuri.cibus.datamodel.Restaurant;
+import com.example.leonardokafuri.cibus.R;
+import com.example.leonardokafuri.cibus.connection.RestaurantsMenuAsyncTask;
+import com.example.leonardokafuri.cibus.ui.RestaurantMenu;
+import com.example.leonardokafuri.cibus.utils.TestData;
 
+import com.example.leonardokafuri.cibus.ui.RestaurantMenu_Adapter;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
+
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Payment extends AppCompatActivity {
     DatabaseHelper dbh;
+    double totalPrice;
+    RestaurantMenu rm;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         dbh = new DatabaseHelper(this);
@@ -24,8 +39,13 @@ public class Payment extends AppCompatActivity {
         final EditText name = findViewById(R.id.cardName);
         final EditText date = findViewById(R.id.Expire);
         final EditText type = findViewById(R.id.CardType);
+        RadioButton pickup = findViewById(R.id.pickup);
+        RadioButton delivery = findViewById(R.id.pickup);
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        final TextView result = findViewById(R.id.total2);
         Button submit = findViewById(R.id.submitOrd);
         final CheckBox saveCC = findViewById(R.id.saveCC);
+        final Date currentTime = Calendar.getInstance().getTime();
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +59,8 @@ public class Payment extends AppCompatActivity {
                         {
                             Toast.makeText(Payment.this, "Credit Card successfully saved", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(Payment.this,History.class));
+
+                            dbh.saveOrder("McDonalds",currentTime.toString(),totalPrice);
                         }
                     }catch(Exception e)
                     {
@@ -47,12 +69,40 @@ public class Payment extends AppCompatActivity {
                 }
                 else
                 startActivity(new Intent(Payment.this,History.class));
+                dbh.saveOrder("McDonalds",currentTime.toString(),totalPrice);
 
 
             }
         });
 
+    radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if (savedInstanceState == null) {
+                Bundle extras = getIntent().getExtras();
+                if(extras == null) {
+                    totalPrice = 0;
+                } else {
+                    totalPrice= extras.getDouble("str");
+                }
+            } else {
+                totalPrice= (Double) savedInstanceState.getSerializable("str");
+            }
+            if(checkedId == R.id.pickup)
+            {
+                result.setText("Your total is " + totalPrice);
+            }
+            if(checkedId == R.id.delivery)
+            {
+                result.setText("Your total is " + (totalPrice + 3.99) + " ($3.99 delivery fee)");
+            }
+        }
+    });
+
+
+
     }
+
 
     // 3 dot menu
     @Override

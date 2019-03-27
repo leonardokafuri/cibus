@@ -15,6 +15,7 @@ import com.example.leonardokafuri.cibus.AccountInfo;
 import com.example.leonardokafuri.cibus.History;
 import com.example.leonardokafuri.cibus.Login;
 import com.example.leonardokafuri.cibus.OrderConfirmation;
+import com.example.leonardokafuri.cibus.Payment;
 import com.example.leonardokafuri.cibus.Promotion;
 import com.example.leonardokafuri.cibus.datamodel.Menu;
 import com.example.leonardokafuri.cibus.datamodel.Restaurant;
@@ -89,7 +90,6 @@ public class RestaurantMenu extends AppCompatActivity {
 
 
         logo = findViewById(R.id.restaurantmenu_logo);
-
         Intent getFromParent = getIntent();
 
         if(getFromParent.hasExtra("name") && getFromParent.hasExtra("index")) {
@@ -106,9 +106,11 @@ public class RestaurantMenu extends AppCompatActivity {
             orderButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent l = new Intent(RestaurantMenu.this, Payment.class);
+                    double price = rmAdapter.getTotalPrice();
+                    l.putExtra("str", price);
                     //todo, start to work from the totalprice here
-                   // Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
 
                     int[] orderList = rmAdapter.getOrderQuantity();
 

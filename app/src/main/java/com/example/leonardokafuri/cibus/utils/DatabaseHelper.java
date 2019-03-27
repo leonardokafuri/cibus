@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "Phone TEXT, Phone2 TEXT, Phone3 TEXT, Province TEXT, City TEXT, StreetName TEXT, StreetNumber INTEGER, PostCode TEXT)";
 
         String queryOrder = "Create Table OrderDetail(OrderId INTEGER PRIMARY KEY," +
-                "UserId INTEGER, RestaurantId INTEGER, Time INTEGER, Amount REAL, AddressId INTEGER, FOREIGN KEY(UserId) REFERENCES User(UserId), FOREIGN KEY(RestaurantId) REFERENCES Restaurant(RestaurantId),  FOREIGN KEY(AddressId) REFERENCES Address(AddressId) )";
+                "UserId INTEGER, RestaurantName TEXT, Time TEXT, Amount REAL, AddressId INTEGER, FOREIGN KEY(UserId) REFERENCES User(UserId),  FOREIGN KEY(AddressId) REFERENCES Address(AddressId) )";
 
         try{
             db.execSQL(queryUser);
@@ -274,6 +274,23 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put("CardExpireDate",date);
         values.put("CardType",type);
         long r = db.insert("CreditCard",null,values);
+        if(r == -1){
+            return  false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean saveOrder(String restaurantName,String date,double price){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("UserId",userId);
+        values.put("RestaurantName",restaurantName);
+        values.put("Time",date);
+        values.put("Amount",price);
+        values.put("AddressId",1);
+        long r = db.insert("OrderDetail",null,values);
         if(r == -1){
             return  false;
         }

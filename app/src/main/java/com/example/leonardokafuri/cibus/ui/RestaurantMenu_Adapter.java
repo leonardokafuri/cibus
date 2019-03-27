@@ -1,5 +1,7 @@
 package com.example.leonardokafuri.cibus.ui;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.leonardokafuri.cibus.Payment;
 import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.datamodel.Menu;
 
@@ -31,8 +34,7 @@ public class RestaurantMenu_Adapter
 
     private DecimalFormat priceFormater;
 
-    private double totalPrice;
-
+    public double totalPrice;
 
     public RestaurantMenu_Adapter(List<Menu> menus) {
 
