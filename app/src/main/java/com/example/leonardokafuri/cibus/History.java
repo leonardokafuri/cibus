@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,15 +40,14 @@ public class History extends AppCompatActivity {
                     str.append(" Time : " + c.getString(3));
                     str.append(" Amount : " + c.getString(4));
                     str.append("\n");
+                    str.append("-----------------------------------------------------------------------------------------");
+                    str.append("\n");
                 }
                 userHistory.setText(str);
             } else {
                 //display a toast message
                 Toast.makeText(History.this, "No orders found", Toast.LENGTH_SHORT).show();
             }
-
-
-
 
 
 
