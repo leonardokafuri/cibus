@@ -302,6 +302,21 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor c = sqLiteDatabase.rawQuery(query,null);
         return c;
     }
+    public Cursor UpdatePromoCode(int id)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query ="UPDATE User SET PromotionCode=1 WHERE UserId ="+ id + ";";
+        Cursor c = sqLiteDatabase.rawQuery(query,null);
+        return c;
+    }
+    public  Cursor DeletePromoCode(int id)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query ="UPDATE User SET PromotionCode=0  WHERE UserId ="+ id + ";";
+        Cursor c = sqLiteDatabase.rawQuery(query,null);
+        return c;
+
+    }
 
     public String createResetToken(Integer UserId){
         SQLiteDatabase db = this.getWritableDatabase();

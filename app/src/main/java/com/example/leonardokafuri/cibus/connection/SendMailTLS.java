@@ -105,6 +105,7 @@ public class SendMailTLS {
         return emailMessage;
     }
 
+
     public static void sendEmail(String email, String code) throws AddressException, MessagingException
     {
         /**
@@ -145,6 +146,73 @@ public class SendMailTLS {
         }).start();
 
     }
+
+    private static MimeMessage draftEmailInvite(String email,StringBuilder from) throws AddressException, MessagingException
+    {
+        String[] toEmails = { email };
+        String emailSubject = "Your have been invited to Cibus!";
+        String emailBody = from + " has invited you to download cibus app from the app store and get food delivered to your door right away !";
+        MimeMessage emailMessage = new MimeMessage(mailSession);
+        /**
+         * Set the mail recipients
+         * */
+        for (int i = 0; i < toEmails.length; i++)
+        {
+            emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
+        }
+        emailMessage.setSubject(emailSubject);
+        /**
+         * If sending HTML mail
+         * */
+        emailMessage.setContent(emailBody, "text/html");
+        /**
+         * If sending only text mail
+         * */
+        //emailMessage.setText(emailBody);// for a text email
+        return emailMessage;
+    }
+
+    public static void sendInviteEmail(String email,StringBuilder user) throws AddressException, MessagingException
+    {
+        /**
+         * Sender's credentials
+         * */
+        final String fromUser = "cibusmobileapp@gmail.com";
+        final String fromUserEmailPassword = "mobile1##";
+        Properties emailProperties = System.getProperties();
+        emailProperties.put("mail.smtp.port", "587");
+
+        emailProperties.put("mail.smtp.auth", "true");
+        emailProperties.put("mail.smtp.starttls.enable", "true");
+        //emailProperties.put("mail.smtp.starttls.trust", "true");
+        mailSession = Session.getDefaultInstance(emailProperties, null);
+
+        final String emailHost = "smtp.gmail.com";
+
+        /**
+         * Draft the message
+         * */
+        final MimeMessage emailMessage = draftEmailInvite(email,user);
+        /**
+         * Send the mail
+         * */
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Transport transport = mailSession.getTransport("smtp");
+                    transport.connect(emailHost, fromUser, fromUserEmailPassword);
+                    transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
+                    transport.close();
+                }catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+
+    }
+
 
     /*
     public static void sendEmail(String emailP, String token) {
