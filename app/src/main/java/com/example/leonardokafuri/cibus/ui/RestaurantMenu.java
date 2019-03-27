@@ -108,7 +108,7 @@ public class RestaurantMenu extends AppCompatActivity {
                 public void onClick(View v) {
 
                     //todo, start to work from the totalprice here
-                   // Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
 
                     int[] orderList = rmAdapter.getOrderQuantity();
 
@@ -123,6 +123,8 @@ public class RestaurantMenu extends AppCompatActivity {
                     for (int i = 0; i < orderList.length; i++) {
                        openConfirmation.putExtra(String.valueOf(i), orderList[i]);
                     }
+
+                    openConfirmation.putExtra("totalPrice", rmAdapter.getTotalPrice());
 
                     startActivity(openConfirmation);
 

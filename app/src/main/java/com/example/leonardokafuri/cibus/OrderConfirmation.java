@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.ui.RestaurantMenu;
 import com.example.leonardokafuri.cibus.utils.TestData;
 
 
@@ -60,6 +61,12 @@ public class OrderConfirmation extends AppCompatActivity {
                 orderList[i] = intent.getIntExtra(String.valueOf(i), 0);
             }
 
+            double totalPrice =  intent.getDoubleExtra("totalPrice",0);
+
+            Toast.makeText(
+                    OrderConfirmation.this,
+                    "Total price is " + totalPrice,
+                    Toast.LENGTH_LONG).show();
 
         }
 
