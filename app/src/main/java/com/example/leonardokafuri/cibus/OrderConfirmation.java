@@ -49,11 +49,15 @@ public class OrderConfirmation extends AppCompatActivity {
 
             ArrayList<com.example.leonardokafuri.cibus.datamodel.Menu> tempList
                     = TestData.getListOfMenus(startingIndex);
-
+            StringBuilder sb = new StringBuilder("Your order is : \r\n");
             //Han: load menu names to local Sting[]
             for (int i = 0; i < tempList.size(); i++) {
                 menuList[i] = tempList.get(i).getFoodName();
+                orderList[i] = intent.getIntExtra(String.valueOf(i), 0);
+                if(orderList[i] == 1)
+                    sb.append(menuList[i] + " - " + orderList[i] + "\r\n");
             }
+            result.setText(sb);
 
             //Han: load order quantity to local int[]
             for(int i = 0 ; i< lengthOfOrderList; i++){
