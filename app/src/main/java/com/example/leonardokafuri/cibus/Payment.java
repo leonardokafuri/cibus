@@ -54,7 +54,7 @@ public class Payment extends AppCompatActivity {
         //final double totalPrice = intent.getDoubleExtra("totalPrice",0);
         Cursor c =dbh.getSavedCC(id);
         try{
-            if (c.getCount()==1)
+            if (c.getCount()>0)
             {
                 number.setText(c.getString(0));
                 name.setText(c.getString(1));
@@ -63,10 +63,8 @@ public class Payment extends AppCompatActivity {
                 type.setText(c.getString(4));
             }else
             {
-                Toast.makeText(Payment.this,"Something went wrong fetching while trying to fetch your card",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Payment.this,"No card saved",Toast.LENGTH_SHORT).show();
             }
-
-
         }catch (Exception e)
         {
             e.printStackTrace();
