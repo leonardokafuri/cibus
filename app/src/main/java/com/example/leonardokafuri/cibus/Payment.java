@@ -2,6 +2,7 @@ package com.example.leonardokafuri.cibus;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,6 +52,25 @@ public class Payment extends AppCompatActivity {
         final double totalPrice = ((double) f);
 
         //final double totalPrice = intent.getDoubleExtra("totalPrice",0);
+        Cursor c =dbh.getSavedCC(id);
+        try{
+            if (c.getCount()==1)
+            {
+                number.setText(c.getString(0));
+                name.setText(c.getString(1));
+                date.setText(c.getString(2));
+                date.setText(c.getString(3));
+                type.setText(c.getString(4));
+            }else
+            {
+                Toast.makeText(Payment.this,"Something went wrong fetching while trying to fetch your card",Toast.LENGTH_SHORT).show();
+            }
+
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +78,7 @@ public class Payment extends AppCompatActivity {
                 if(saveCC.isChecked())
                {
                     try {
-                        boolean saved = dbh.saveCC(number.getText().toString(), name.getText().toString(), date.getText().toString(), type.getText().toString());
+                        boolean saved = dbh.saveCC(number.getText().toString(), name.getText().toString(), date.getText().toString(), type.getText().toString(),id);
                         dbh.saveOrder(id,"McDonalds",currentTime.toString(),totalPrice);
                         if(!saved)
                             Toast.makeText(Payment.this, "Something went wrong, please check your info and try again!", Toast.LENGTH_LONG).show();

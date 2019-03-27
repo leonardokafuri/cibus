@@ -229,6 +229,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor c = sqLiteDatabase.rawQuery(query,null);
         return c;
     }
+    public Cursor getSavedCC(int userID){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT CardNumber,CardName,CardExpireDate,CardType FROM CreditCard WHERE UserId = "+ userID +";";
+        Cursor c = sqLiteDatabase.rawQuery(query,null);
+        return c;
+    }
 
     public Cursor UpdateInformation(String fname, String lname, String email, String phone, int id)
     {
@@ -255,17 +261,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
-    /*public void getUserId(String username,String password){
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        String hashPassword;
-        hashPassword = "";
-        hashPassword = get_SHA_256_SecurePassword(password);
-        String query1 = "SELECT UserId FROM User WHERE AccountName = '" + username + "' AND password = '" + hashPassword + "'";
-        Cursor c1 = sqLiteDatabase.rawQuery(query1,null);
-        userId = c1.getString(0);
-    }*/
 
-    public boolean saveCC(String number,String name,String date,String type){
+    public boolean saveCC(String number,String name,String date,String type,int userId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("UserId",userId);
