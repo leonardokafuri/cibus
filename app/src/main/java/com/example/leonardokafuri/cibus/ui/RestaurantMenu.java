@@ -1,6 +1,8 @@
 package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -86,7 +88,7 @@ public class RestaurantMenu extends AppCompatActivity {
     }
 
     private void initializeScreen(){
-
+        final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         logo = findViewById(R.id.restaurantmenu_logo);
 
@@ -115,6 +117,12 @@ public class RestaurantMenu extends AppCompatActivity {
                     int counterForOrderList = 0;
                     Intent openConfirmation = new Intent(RestaurantMenu.this, OrderConfirmation.class);
                     openConfirmation.putExtra("totalPrice",rmAdapter.getTotalPrice());
+
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    double s = rmAdapter.getTotalPrice();
+                    float f = ((float)s);
+                    editor.putFloat("totalprice",f);
+                    editor.commit();
 
                     //Han: this is used for the next activity to work out the menus names
                     openConfirmation.putExtra("startIndexForMenu",startingIndex);

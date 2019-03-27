@@ -1,6 +1,8 @@
 package com.example.leonardokafuri.cibus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +33,9 @@ public class OrderConfirmation extends AppCompatActivity {
         TextView result = findViewById(R.id.result);
 
         Intent intent = getIntent(); // get the intent that was passed to it
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        float f = sp.getFloat("totalprice",0);
+        final double totalPrice = ((double) f);
 
 
         if(intent!=null)
@@ -57,6 +62,7 @@ public class OrderConfirmation extends AppCompatActivity {
                 if(orderList[i] == 1)
                     sb.append(menuList[i] + " - " + orderList[i] + "\r\n");
             }
+            sb.append("Your total is: " + totalPrice);
             result.setText(sb);
 
             //Han: load order quantity to local int[]

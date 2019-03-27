@@ -1,6 +1,8 @@
 package com.example.leonardokafuri.cibus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -43,8 +45,12 @@ public class Payment extends AppCompatActivity {
         Button submit = findViewById(R.id.submitOrd);
         final CheckBox saveCC = findViewById(R.id.saveCC);
         final Date currentTime = Calendar.getInstance().getTime();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        final int id = sp.getInt("key1",0);
+        float f = sp.getFloat("totalprice",0);
+        final double totalPrice = ((double) f);
 
-        final double totalPrice = intent.getDoubleExtra("totalPrice",0);
+        //final double totalPrice = intent.getDoubleExtra("totalPrice",0);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +59,7 @@ public class Payment extends AppCompatActivity {
                {
                     try {
                         boolean saved = dbh.saveCC(number.getText().toString(), name.getText().toString(), date.getText().toString(), type.getText().toString());
+                        dbh.saveOrder(id,"McDonalds",currentTime.toString(),totalPrice);
                         if(!saved)
                             Toast.makeText(Payment.this, "Something went wrong, please check your info and try again!", Toast.LENGTH_LONG).show();
                         else
@@ -60,16 +67,16 @@ public class Payment extends AppCompatActivity {
                             Toast.makeText(Payment.this, "Credit Card successfully saved", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(Payment.this,History.class));
 
-                            dbh.saveOrder("McDonalds",currentTime.toString(),totalPrice);
                         }
                     }catch(Exception e)
                     {
                         Toast.makeText(Payment.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-                else
-                startActivity(new Intent(Payment.this,History.class));
-                dbh.saveOrder("McDonalds",currentTime.toString(),totalPrice);
+                else {
+                    startActivity(new Intent(Payment.this, History.class));
+                    dbh.saveOrder(id, "McDonalds", currentTime.toString(), totalPrice);
+                }
 
 
             }
