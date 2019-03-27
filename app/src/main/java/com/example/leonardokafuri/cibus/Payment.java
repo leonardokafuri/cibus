@@ -13,11 +13,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.leonardokafuri.cibus.datamodel.Restaurant;
-import com.example.leonardokafuri.cibus.R;
-import com.example.leonardokafuri.cibus.connection.RestaurantsMenuAsyncTask;
 import com.example.leonardokafuri.cibus.ui.RestaurantMenu;
-import com.example.leonardokafuri.cibus.utils.TestData;
+
 
 import com.example.leonardokafuri.cibus.ui.RestaurantMenu_Adapter;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
@@ -28,8 +25,8 @@ import java.util.Date;
 
 public class Payment extends AppCompatActivity {
     DatabaseHelper dbh;
-    double totalPrice;
     RestaurantMenu rm;
+    Intent intent = getIntent();
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +43,9 @@ public class Payment extends AppCompatActivity {
         Button submit = findViewById(R.id.submitOrd);
         final CheckBox saveCC = findViewById(R.id.saveCC);
         final Date currentTime = Calendar.getInstance().getTime();
+
+        final double totalPrice = intent.getDoubleExtra("totalPrice",0);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,16 +78,6 @@ public class Payment extends AppCompatActivity {
     radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (savedInstanceState == null) {
-                Bundle extras = getIntent().getExtras();
-                if(extras == null) {
-                    totalPrice = 0;
-                } else {
-                    totalPrice= extras.getDouble("str");
-                }
-            } else {
-                totalPrice= (Double) savedInstanceState.getSerializable("str");
-            }
             if(checkedId == R.id.pickup)
             {
                 result.setText("Your total is " + totalPrice);

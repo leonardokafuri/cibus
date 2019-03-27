@@ -114,6 +114,7 @@ public class RestaurantMenu extends AppCompatActivity {
 
                     int counterForOrderList = 0;
                     Intent openConfirmation = new Intent(RestaurantMenu.this, OrderConfirmation.class);
+                    openConfirmation.putExtra("totalPrice",rmAdapter.getTotalPrice());
 
                     //Han: this is used for the next activity to work out the menus names
                     openConfirmation.putExtra("startIndexForMenu",startingIndex);
