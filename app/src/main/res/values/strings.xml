@@ -29,7 +29,7 @@
     <string name="title4">Order History</string>
     <string name="title5">Your order</string>
     <string name="title6">Promotion</string>
-    <string name="gopay">Proceed to Payment</string>
+    <string name="order_confirmation_confirm_btn">Proceed to Payment</string>
     <string name="order_confirmation_customer_comment_hint">Any comment? </string>
     <string name="Paymentinfo">Payment Information</string>
     <string name="hint4">Card Name</string>

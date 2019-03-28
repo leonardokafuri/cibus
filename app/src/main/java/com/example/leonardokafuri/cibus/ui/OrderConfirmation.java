@@ -39,8 +39,6 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private StringBuilder stringBuilder;
 
-    private TextView result;
-
     private Button proceed;
 
     private ListView listView;
@@ -49,8 +47,6 @@ public class OrderConfirmation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
-
-        result = findViewById(R.id.result);
 
         proceed = findViewById(R.id.order_confirmation_btn_confirm);
 
@@ -103,7 +99,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
         }
 
-        result.setText(stringBuilder);
+        //result.setText(stringBuilder);
 
 
 
