@@ -79,7 +79,8 @@ public class Restaurants extends AppCompatActivity
             };
             handlerBackPress.postDelayed(countDownTwoSecond, 2000);
         }else{
-            super.onBackPressed();
+            //super.onBackPressed();
+            startActivity(new Intent(Restaurants.this, Login.class));
         }
 
     }

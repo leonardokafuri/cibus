@@ -51,6 +51,8 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private ListView listView;
 
+    private TextView total;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +64,15 @@ public class OrderConfirmation extends AppCompatActivity {
 
         listView = findViewById(R.id.order_confirmation_listview);
 
+        total = findViewById(R.id.order_confirmation_total);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         totalPrice = (double) sharedPreferences.getFloat("totalprice",0);
 
         priceFormat = new DecimalFormat("00.00");
 
-        stringBuilder = new StringBuilder("Your order is : \r\n");
-
-
-
+        total.setText("Total amount: $"+ priceFormat.format(totalPrice));
 
         if(sharedPreferences!=null)
         {
@@ -100,8 +101,7 @@ public class OrderConfirmation extends AppCompatActivity {
             for (int i = 0; i < tempList.size(); i++) {
                 menuList[i] = tempList.get(i).getFoodName();
 
-                if(orderList[i] > 0)
-                    stringBuilder.append(menuList[i] + " - " + orderList[i] + "\r\n");
+
             }
 
             //Han: load prices to loca double[]
@@ -109,7 +109,6 @@ public class OrderConfirmation extends AppCompatActivity {
                 priceList[i] = (double)sharedPreferences.getFloat("m"+String.valueOf(i),0);
             }
 
-            stringBuilder.append("Your total is: " + priceFormat.format(totalPrice));
 
 
         }
