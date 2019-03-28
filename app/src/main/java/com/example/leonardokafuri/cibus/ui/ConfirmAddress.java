@@ -98,18 +98,19 @@ public class ConfirmAddress extends AppCompatActivity {
             public void onClick(View v) {
                 if(hasValuesChangedByUser()==true){
 
-                    if(ifUserEnteredAllField()){
+                    if(ifUserEnteredAllField() == true){
 
                         //save to database
                         String[] defaultAddr = saveNewValuesIntoString();
 
-
                         dbh.insertNewDefaultAddress(userId,defaultAddr);
+
+                        enterMainScreenAndDestroyThisActivity();
                     }
 
                 }
 
-                enterMainScreenAndDestroyThisActivity();
+
             }
         });
 
@@ -126,38 +127,38 @@ public class ConfirmAddress extends AppCompatActivity {
 
     private boolean ifUserEnteredAllField(){
 
-        if(province.getText().length() == 0){
-            msgToUserNeedToFillALl();
-            return false;
-        }else if (city.getText().length() == 0){
-            msgToUserNeedToFillALl();
-            return false;
-        }else if (streeName.getText().length() == 0){
-            msgToUserNeedToFillALl();
-            return false;
-        }else if (streetNum.getText().length() == 0){
-            msgToUserNeedToFillALl();
-            return false;
-        }else if (unitNum.getText().length() == 0){
-            msgToUserNeedToFillALl();
-            return false;
-        }else if (zipCode.getText().length() == 0){
-            msgToUserNeedToFillALl();
-            return false;
-        }else if (phoneNum.getText().length() == 0){
-            msgToUserNeedToFillALl();
-            return false;
+        boolean output = true;
+
+        if(province.getText().toString().trim().length() == 0){
+
+            output= false;
+        }else if (city.getText().toString().trim().length() == 0){
+
+            output=  false;
+        }else if (streeName.getText().toString().trim().length() == 0){
+
+            output=  false;
+        }else if (streetNum.getText().toString().trim().length() == 0){
+
+            output=  false;
+        }else if (zipCode.getText().toString().trim().length() == 0){
+
+            output=  false;
+        }else if (phoneNum.getText().toString().trim().length() == 0){
+
+            output=  false;
         }
 
+        if(output == false)
+            msgToUserNeedToFillALl();
 
-
-        return true;
+        return output;
     }
 
     private void msgToUserNeedToFillALl(){
         Toast.makeText(
                 ConfirmAddress.this,
-                "Please enter all field!",
+                "Please enter all field except unit NO.!",
                 Toast.LENGTH_LONG
                 ).show();
     }
