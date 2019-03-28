@@ -6,55 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".ui.OrderConfirmation">
 
-    <Button
-        android:id="@+id/order_confirmation_btn_confirm"
-        android:layout_width="194dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="36dp"
-        android:text="@string/gopay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
-        android:id="@+id/title5"
+        android:id="@+id/order_confirmation_screentitle"
         android:layout_width="164dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:gravity="center_horizontal"
         android:text="@string/title5"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="304dp"
-        android:layout_height="177dp"
-        android:layout_marginTop="80dp"
-        android:textStyle="bold"
+    <ListView
+        android:id="@+id/order_confirmation_listview"
+        android:layout_width="0dp"
+        android:layout_height="420dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/order_confirmation_screentitle" />
 
     <EditText
         android:id="@+id/order_confirmation_edittext_comments"
         android:layout_width="286dp"
         android:layout_height="120dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginRight="29dp"
-        android:layout_marginBottom="122dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:hint="@string/order_confirmation_customer_comment_hint"
         android:inputType="text|textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/order_confirmation_listview"
         tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/order_confirmation_btn_confirm"
+        android:layout_width="194dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/gopay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_confirmation_edittext_comments" />
 </android.support.constraint.ConstraintLayout>
