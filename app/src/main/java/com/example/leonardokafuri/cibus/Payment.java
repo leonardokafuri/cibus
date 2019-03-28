@@ -63,7 +63,7 @@ public class Payment extends AppCompatActivity {
                 if(saveCC.isChecked())
                {
                     try {
-                        boolean saved = dbh.saveCC(number.getText().toString(), name.getText().toString(), date.getText().toString(), type.getText().toString());
+                        boolean saved = dbh.saveCC(number.getText().toString(), name.getText().toString(), date.getText().toString(), type.getText().toString(),id);
                         dbh.saveOrder(id,RestName,currentTime.toString(),totalPrice);
                         if(!saved)
                             Toast.makeText(Payment.this, "Something went wrong, please check your info and try again!", Toast.LENGTH_LONG).show();
