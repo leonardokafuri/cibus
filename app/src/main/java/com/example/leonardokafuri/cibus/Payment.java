@@ -52,10 +52,26 @@ public class Payment extends AppCompatActivity {
         float f = sp.getFloat("totalprice",0);
         final double totalPrice = ((double) f);
         final DecimalFormat precision = new DecimalFormat("00.00");
-        String s = sp.getString("name","");
-        final String RestName = ((String)s);
+        final String RestName = sp.getString("name","");
 
-        //final double totalPrice = intent.getDoubleExtra("totalPrice",0);
+        Cursor c =dbh.getSavedCC(id);
+        try{
+            if (c.getCount()==1)
+            {
+                number.setText(c.getString(0));
+                name.setText(c.getString(1));
+                date.setText(c.getString(2));
+                date.setText(c.getString(3));
+                type.setText(c.getString(4));
+            }else
+            {
+                Toast.makeText(Payment.this,"No card saved",Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +96,7 @@ public class Payment extends AppCompatActivity {
                 }
                 else {
                     startActivity(new Intent(Payment.this, History.class));
-                    dbh.saveOrder(id, "McDonalds", currentTime.toString(), totalPrice);
+                    dbh.saveOrder(id, RestName, currentTime.toString(), totalPrice);
                 }
 
 

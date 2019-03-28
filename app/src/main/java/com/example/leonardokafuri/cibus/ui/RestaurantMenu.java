@@ -101,10 +101,7 @@ public class RestaurantMenu extends AppCompatActivity {
 
             SharedPreferences.Editor editor1 = sharedPref.edit();
             String name = restaurantName;
-            String s = "";
-            s = ((String) s);
-            editor1.putString("name",s);
-
+            editor1.putString("name",name);
             editor1.commit();
 
             startingIndex = getFromParent.getIntExtra("index", -1);

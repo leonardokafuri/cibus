@@ -297,6 +297,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor c = sqLiteDatabase.rawQuery(query,null);
         return c;
     }
+
     public Cursor viewHistory(int id)
     {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
