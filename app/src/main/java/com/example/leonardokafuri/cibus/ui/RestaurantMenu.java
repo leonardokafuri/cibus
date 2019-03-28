@@ -11,12 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.leonardokafuri.cibus.AccountInfo;
 import com.example.leonardokafuri.cibus.History;
 import com.example.leonardokafuri.cibus.Login;
-import com.example.leonardokafuri.cibus.OrderConfirmation;
 import com.example.leonardokafuri.cibus.Promotion;
 import com.example.leonardokafuri.cibus.datamodel.Menu;
 import com.example.leonardokafuri.cibus.datamodel.Restaurant;
@@ -126,9 +124,10 @@ public class RestaurantMenu extends AppCompatActivity {
 
 
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    double s = rmAdapter.getTotalPrice();
-                    float f = ((float)s);
-                    editor.putFloat("totalprice",f);
+
+                    float totalPrice = (float)(rmAdapter.getTotalPrice());
+
+                    editor.putFloat("totalprice",totalPrice);
 
 
                     //Han: this is used for the next activity to work out the menus names

@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".OrderConfirmation" />
+        <activity android:name=".ui.OrderConfirmation" />
         <activity android:name=".Payment" />
         <activity android:name=".History" />
         <activity android:name=".Promotion" />

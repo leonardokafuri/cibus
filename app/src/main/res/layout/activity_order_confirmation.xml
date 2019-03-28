@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderConfirmation">
+    tools:context=".ui.OrderConfirmation">
 
     <Button
-        android:id="@+id/goPay"
+        android:id="@+id/order_confirmation_btn_confirm"
         android:layout_width="194dp"
         android:layout_height="61dp"
         android:layout_marginBottom="36dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/comments"
+        android:id="@+id/order_confirmation_edittext_comments"
         android:layout_width="286dp"
         android:layout_height="120dp"
         android:layout_marginStart="29dp"
@@ -49,7 +49,7 @@
         android:layout_marginEnd="29dp"
         android:layout_marginRight="29dp"
         android:layout_marginBottom="122dp"
-        android:hint="@string/hint3"
+        android:hint="@string/order_confirmation_customer_comment_hint"
         android:inputType="text|textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
