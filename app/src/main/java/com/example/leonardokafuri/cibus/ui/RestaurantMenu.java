@@ -88,6 +88,7 @@ public class RestaurantMenu extends AppCompatActivity {
     }
 
     private void initializeScreen(){
+
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         logo = findViewById(R.id.restaurantmenu_logo);
@@ -103,6 +104,7 @@ public class RestaurantMenu extends AppCompatActivity {
             String s = "";
             s = ((String) s);
             editor1.putString("name",s);
+
             editor1.commit();
 
             startingIndex = getFromParent.getIntExtra("index", -1);
@@ -120,28 +122,31 @@ public class RestaurantMenu extends AppCompatActivity {
                     //todo, start to work from the totalprice here
                    // Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
 
+
                     int[] orderList = rmAdapter.getOrderQuantity();
 
                     int counterForOrderList = 0;
-                    Intent openConfirmation = new Intent(RestaurantMenu.this, OrderConfirmation.class);
-                    openConfirmation.putExtra("totalPrice",rmAdapter.getTotalPrice());
+
 
                     SharedPreferences.Editor editor = sharedPref.edit();
                     double s = rmAdapter.getTotalPrice();
                     float f = ((float)s);
                     editor.putFloat("totalprice",f);
-                    editor.commit();
+
 
                     //Han: this is used for the next activity to work out the menus names
-                    openConfirmation.putExtra("startIndexForMenu",startingIndex);
+                    editor.putInt("startIndexForMenu",startingIndex);
 
-                    openConfirmation.putExtra("lengthOfOrderList", orderList.length);
+                    editor.putInt("lengthOfOrderList", orderList.length);
+
                     //Han: store each order in sequence and pass to order conformation screen
                     for (int i = 0; i < orderList.length; i++) {
-                       openConfirmation.putExtra(String.valueOf(i), orderList[i]);
+                        editor.putInt(String.valueOf(i), orderList[i]);
                     }
 
-                    startActivity(openConfirmation);
+                    editor.commit();
+
+                    startActivity(new Intent(RestaurantMenu.this, OrderConfirmation.class));
 
 
 

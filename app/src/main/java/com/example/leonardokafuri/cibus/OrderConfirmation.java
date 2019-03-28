@@ -34,21 +34,23 @@ public class OrderConfirmation extends AppCompatActivity {
         TextView result = findViewById(R.id.result);
 
         Intent intent = getIntent(); // get the intent that was passed to it
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        float f = sp.getFloat("totalprice",0);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        float f = sharedPreferences.getFloat("totalprice",0);
         final double totalPrice = ((double) f);
         DecimalFormat precision = new DecimalFormat("00.00");
 
 
-        if(intent!=null)
+        if(sharedPreferences!=null)
         {
-            String qty = intent.getStringExtra("data"); // get the value that was passed
-            result.setText(qty); // setting the textview with the value
+            /*String qty = intent.getStringExtra("data"); // get the value that was passed
+            result.setText(qty); // setting the textview with the value*/
 
             //Han: check this out @Bogdan
-            int startingIndex = intent.getIntExtra("startIndexForMenu", -1);
+            int startingIndex = sharedPreferences.getInt("startIndexForMenu", -1);
 
-            int lengthOfOrderList = intent.getIntExtra("lengthOfOrderList",-1);
+            int lengthOfOrderList = sharedPreferences.getInt("lengthOfOrderList",0);
 
             orderList = new int[lengthOfOrderList];
 
@@ -56,21 +58,27 @@ public class OrderConfirmation extends AppCompatActivity {
 
             ArrayList<com.example.leonardokafuri.cibus.datamodel.Menu> tempList
                     = TestData.getListOfMenus(startingIndex);
-            StringBuilder sb = new StringBuilder("Your order is : \r\n");
-            //Han: load menu names to local Sting[]
-            for (int i = 0; i < tempList.size(); i++) {
-                menuList[i] = tempList.get(i).getFoodName();
-                orderList[i] = intent.getIntExtra(String.valueOf(i), 0);
-                if(orderList[i] == 1)
-                    sb.append(menuList[i] + " - " + orderList[i] + "\r\n");
-            }
-            sb.append("Your total is: " + precision.format(totalPrice));
-            result.setText(sb);
+
+            StringBuilder stringBuilder = new StringBuilder("Your order is : \r\n");
 
             //Han: load order quantity to local int[]
             for(int i = 0 ; i< lengthOfOrderList; i++){
-                orderList[i] = intent.getIntExtra(String.valueOf(i), 0);
+                orderList[i] = sharedPreferences.getInt(String.valueOf(i), 0);
             }
+
+            //Han: load menu names to local Sting[]
+            for (int i = 0; i < tempList.size(); i++) {
+                menuList[i] = tempList.get(i).getFoodName();
+
+                if(orderList[i] > 0)
+                    stringBuilder.append(menuList[i] + " - " + orderList[i] + "\r\n");
+            }
+
+            stringBuilder.append("Your total is: " + precision.format(totalPrice));
+
+            result.setText(stringBuilder);
+
+
 
 
         }
