@@ -2,6 +2,7 @@ package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,8 +27,10 @@ import java.util.List;
 public class OrderConfirmation extends AppCompatActivity {
 
     //Han: store order number that is passed in from parent activity
+    //Note that the position of values are correponding to each other between 3 lists
+    //eg. menuList[0] is the first item with price in pricelist[0] that represent orderlist[0]
     private int[] orderList;
-    //Han: store menu names
+
     private String[] menuList;
 
     private double[] priceList;
@@ -47,6 +50,7 @@ public class OrderConfirmation extends AppCompatActivity {
     private ListView listView;
 
     private TextView total;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,4 +192,6 @@ public class OrderConfirmation extends AppCompatActivity {
         }
         return true;
     }
+
+
 }

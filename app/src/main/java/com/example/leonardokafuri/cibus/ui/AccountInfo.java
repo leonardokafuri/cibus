@@ -29,11 +29,13 @@ public class AccountInfo extends AppCompatActivity {
         final EditText lastname = findViewById(R.id.UserLname);
         final EditText phonenum = findViewById(R.id.UserCell);
         final EditText email = findViewById(R.id.UserMail);
+
         Button update = findViewById(R.id.editinfo);
+
         //referencing to editText fields that will be auto filled with user information and  referencing to the btn to update
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        final int id = sp.getInt("key1",0); // getting the current user id and passing into an int
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final int id = sharedPreferences.getInt("userId",0); // getting the current user id and passing into an int
 
         Cursor c = dbh.ViewUserInfo(id); // calling the function ViewUserInfo with the id from current user as an parameter
        try{

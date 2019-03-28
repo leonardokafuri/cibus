@@ -28,7 +28,7 @@ public class Promotion extends AppCompatActivity {
         final EditText friendEmail = findViewById(R.id.input);
         Button invite = findViewById(R.id.invite);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        final int id = sp.getInt("key1",0);
+        final int id = sp.getInt("userId",0);
 
         Cursor c = dbh.ViewUserInfo(id);
         final StringBuilder user = new StringBuilder();

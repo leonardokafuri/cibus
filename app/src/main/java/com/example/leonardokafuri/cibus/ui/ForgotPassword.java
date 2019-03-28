@@ -18,13 +18,16 @@ public class ForgotPassword extends AppCompatActivity {
     DatabaseHelper dbh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
         final EditText email = findViewById(R.id.Resetmail);
         final EditText sendCode = findViewById(R.id.ResetCode);
         final EditText newPass = findViewById(R.id.newpass);
         final Button btSendCode = findViewById(R.id.SendCode);
         final Button btReset = findViewById(R.id.Reset);
+
         dbh = new DatabaseHelper(this);
 
         btSendCode.setOnClickListener(new View.OnClickListener() {

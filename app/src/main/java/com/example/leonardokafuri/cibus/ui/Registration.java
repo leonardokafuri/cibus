@@ -18,7 +18,9 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
         dbh = new DatabaseHelper(this);
+
         final EditText username = findViewById(R.id.RegUser);
         final EditText password = findViewById(R.id.RegPass);
         final EditText phone = findViewById(R.id.RegCell);

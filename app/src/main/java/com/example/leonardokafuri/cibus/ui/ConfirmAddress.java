@@ -17,6 +17,7 @@ public class ConfirmAddress extends AppCompatActivity {
 
     private static final String LOG_TAG = ConfirmAddress.class.getSimpleName();
 
+    //used to get user address from DB.
     private int userId;
 
     private DatabaseHelper dbh;
@@ -96,18 +97,18 @@ public class ConfirmAddress extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(hasValuesChangedByUser()==true){
 
-                    if(ifUserEnteredAllField() == true){
+                if(ifUserEnteredAllField() == true){
 
+                    if(hasValuesChangedByUser()==true){
                         //save to database
                         String[] defaultAddr = saveNewValuesIntoString();
 
                         dbh.insertNewDefaultAddress(userId,defaultAddr);
 
-                        enterMainScreenAndDestroyThisActivity();
                     }
 
+                    enterMainScreenAndDestroyThisActivity();
                 }
 
 
@@ -178,17 +179,7 @@ public class ConfirmAddress extends AppCompatActivity {
             s2.equals(storeOriginalInfo[2])&& s3.equals(storeOriginalInfo[3])&&
             s4.equals(storeOriginalInfo[4])&& s5.equals(storeOriginalInfo[5])&&
             s6.equals(storeOriginalInfo[6])
-        ){
-            Toast.makeText(
-                    ConfirmAddress.this,
-                    "Value not changed",
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }
-        Toast.makeText(
-                ConfirmAddress.this,
-                "Value changed!!!!!!!!1",
-                Toast.LENGTH_LONG).show();
+        ){ return false;  }
 
         return true;
     }

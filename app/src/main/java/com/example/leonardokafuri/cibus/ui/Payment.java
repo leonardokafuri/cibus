@@ -28,7 +28,8 @@ import java.util.Date;
 public class Payment extends AppCompatActivity {
     DatabaseHelper dbh;
     RestaurantMenu rm;
-    Intent intent = getIntent();
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
