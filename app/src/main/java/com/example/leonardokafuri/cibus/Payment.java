@@ -40,8 +40,8 @@ public class Payment extends AppCompatActivity {
         final EditText name = findViewById(R.id.cardName);
         final EditText date = findViewById(R.id.Expire);
         final EditText type = findViewById(R.id.CardType);
-        RadioButton pickup = findViewById(R.id.pickup);
-        RadioButton delivery = findViewById(R.id.pickup);
+
+
         RadioGroup radioGroup = findViewById(R.id.radioGroup);
         final TextView result = findViewById(R.id.total2);
         Button submit = findViewById(R.id.submitOrd);
@@ -56,13 +56,15 @@ public class Payment extends AppCompatActivity {
 
         Cursor c =dbh.getSavedCC(id);
         try{
-            if (c.getCount()==1)
+            if (c.getCount()>0)
             {
-                number.setText(c.getString(0));
-                name.setText(c.getString(1));
-                date.setText(c.getString(2));
-                date.setText(c.getString(3));
-                type.setText(c.getString(4));
+                while (c.moveToNext())
+                {
+                    number.setText(c.getInt(0));
+                    name.setText(c.getString(1));
+                    date.setText(c.getInt(2));
+                    type.setText(c.getString(3));
+                }
             }else
             {
                 Toast.makeText(Payment.this,"No card saved",Toast.LENGTH_SHORT).show();
@@ -106,22 +108,38 @@ public class Payment extends AppCompatActivity {
     radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if(checkedId == R.id.pickup )
+
+            Cursor promo = dbh.PromotionCode(id);
+            try {
+                if(promo.getCount()>0)
+                {
+                    while (promo.moveToNext())
+                    {
+                        int currentpromoNum = promo.getInt(0);//get the user current promo code value
+                        if (checkedId == R.id.pickup) {
+                            if (currentpromoNum == 1) {// if user promo code is equals to 1 apply promo
+                                result.setText("Your total is " + (precision.format(totalPrice * 0.1)) + "\r\n" + "Promotion code is applied!");
+                                promo = dbh.DeletePromoCode(id);
+                            } else if (currentpromoNum == 0) {// if user promo code is equals to 0 no promo
+                                result.setText("Your total is " + precision.format(totalPrice));
+                            }
+                        }
+                        if (checkedId == R.id.delivery) {
+                            if (currentpromoNum == 1) {
+                                result.setText("Your total is " + precision.format(((totalPrice * 0.1) + 3.99 + totalPrice)) + " ($3.99 delivery fee)" + "\r\n" + "Promotion code is applied!");
+                                promo = dbh.DeletePromoCode(id);
+                            } else if (currentpromoNum == 0) {
+                                result.setText("Your total is " + precision.format((totalPrice + 3.99)) + " ($3.99 delivery fee)");
+                            }
+                        }
+                    }
+
+                }
+            }catch (Exception e)
             {
-                result.setText("Your total is " + precision.format(totalPrice));
+                e.printStackTrace();
             }
-            if(checkedId == R.id.delivery)
-            {
-                result.setText("Your total is " + precision.format((totalPrice + 3.99)) + " ($3.99 delivery fee)");
-            }
-            /*if(checkedId == R.id.pickup && code == "1")
-            {
-                result.setText("Your total is " + (precision.format(totalPrice * 0.9)) +"\r\n" + "Promotion code is applied!");
-            }
-            if(checkedId == R.id.delivery && code == "1")
-            {
-                result.setText("Your total is " + precision.format(((totalPrice * 0.9) + 3.99)) + " ($3.99 delivery fee)"+"\r\n" + "Promotion code is applied!");
-            }*/
+
         }
     });
 
