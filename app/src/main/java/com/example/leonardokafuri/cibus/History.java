@@ -35,9 +35,9 @@ public class History extends AppCompatActivity {
         StringBuilder str = new StringBuilder();
             if (c.getCount() > 0) {
                 while (c.moveToNext()) {
-                    str.append("Order ID : " + c.getString(0));
-                    //str.append(" Restaurant ID : " + c.getString(2));
-                    str.append(" Time : " + c.getString(3) + "\r\n");
+                    str.append(" Order ID : " + c.getString(0));
+                    str.append(" Restaurant Name : " + c.getString(2)+ "\r\n");
+                    str.append(" Time : " + c.getString(3) );
                     str.append(" Amount : " + c.getString(4));
                     str.append("\n");
                     str.append("-----------------------------------------------------------------------------------------");

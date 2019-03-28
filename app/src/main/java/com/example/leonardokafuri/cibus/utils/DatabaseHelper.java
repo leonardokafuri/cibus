@@ -3,6 +3,7 @@ package com.example.leonardokafuri.cibus.utils;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -313,6 +314,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Cursor c = sqLiteDatabase.rawQuery(query,null);
         return c;
     }
+
+    public Cursor PromotionCode(int id){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT PromotionCode FROM User  WHERE UserId ="+ id + ";";
+        Cursor c = sqLiteDatabase.rawQuery(query,null);
+        return c;
+    }
+
     public Cursor UpdatePromoCode(int id)
     {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();

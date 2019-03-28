@@ -97,6 +97,14 @@ public class RestaurantMenu extends AppCompatActivity {
         if(getFromParent.hasExtra("name") && getFromParent.hasExtra("index")) {
 
             restaurantName = getFromParent.getStringExtra("name");
+
+            SharedPreferences.Editor editor1 = sharedPref.edit();
+            String name = restaurantName;
+            String s = "";
+            s = ((String) s);
+            editor1.putString("name",s);
+            editor1.commit();
+
             startingIndex = getFromParent.getIntExtra("index", -1);
 
             ArrayList<Restaurant> restaurants = TestData.getListOfRestaurants();

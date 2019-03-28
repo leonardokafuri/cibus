@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.leonardokafuri.cibus.utils.TestData;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class OrderConfirmation extends AppCompatActivity {
@@ -36,6 +37,7 @@ public class OrderConfirmation extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         float f = sp.getFloat("totalprice",0);
         final double totalPrice = ((double) f);
+        DecimalFormat precision = new DecimalFormat("00.00");
 
 
         if(intent!=null)
@@ -62,7 +64,7 @@ public class OrderConfirmation extends AppCompatActivity {
                 if(orderList[i] == 1)
                     sb.append(menuList[i] + " - " + orderList[i] + "\r\n");
             }
-            sb.append("Your total is: " + totalPrice);
+            sb.append("Your total is: " + precision.format(totalPrice));
             result.setText(sb);
 
             //Han: load order quantity to local int[]

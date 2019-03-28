@@ -2,6 +2,7 @@ package com.example.leonardokafuri.cibus;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.example.leonardokafuri.cibus.ui.RestaurantMenu;
 import com.example.leonardokafuri.cibus.ui.RestaurantMenu_Adapter;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -49,6 +51,9 @@ public class Payment extends AppCompatActivity {
         final int id = sp.getInt("key1",0);
         float f = sp.getFloat("totalprice",0);
         final double totalPrice = ((double) f);
+        final DecimalFormat precision = new DecimalFormat("00.00");
+        String s = sp.getString("name","");
+        final String RestName = ((String)s);
 
         //final double totalPrice = intent.getDoubleExtra("totalPrice",0);
 
@@ -59,7 +64,7 @@ public class Payment extends AppCompatActivity {
                {
                     try {
                         boolean saved = dbh.saveCC(number.getText().toString(), name.getText().toString(), date.getText().toString(), type.getText().toString());
-                        dbh.saveOrder(id,"McDonalds",currentTime.toString(),totalPrice);
+                        dbh.saveOrder(id,RestName,currentTime.toString(),totalPrice);
                         if(!saved)
                             Toast.makeText(Payment.this, "Something went wrong, please check your info and try again!", Toast.LENGTH_LONG).show();
                         else
@@ -85,14 +90,22 @@ public class Payment extends AppCompatActivity {
     radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if(checkedId == R.id.pickup)
+            if(checkedId == R.id.pickup )
             {
-                result.setText("Your total is " + totalPrice);
+                result.setText("Your total is " + precision.format(totalPrice));
             }
             if(checkedId == R.id.delivery)
             {
-                result.setText("Your total is " + (totalPrice + 3.99) + " ($3.99 delivery fee)");
+                result.setText("Your total is " + precision.format((totalPrice + 3.99)) + " ($3.99 delivery fee)");
             }
+            /*if(checkedId == R.id.pickup && code == "1")
+            {
+                result.setText("Your total is " + (precision.format(totalPrice * 0.9)) +"\r\n" + "Promotion code is applied!");
+            }
+            if(checkedId == R.id.delivery && code == "1")
+            {
+                result.setText("Your total is " + precision.format(((totalPrice * 0.9) + 3.99)) + " ($3.99 delivery fee)"+"\r\n" + "Promotion code is applied!");
+            }*/
         }
     });
 
