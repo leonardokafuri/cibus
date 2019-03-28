@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Intent i = new Intent(Login.this, OrderConfirmation.class);
+                    Intent i = new Intent(Login.this, ConfirmAddress.class);
                     c.moveToFirst();
                     dbh.setUserId(c.getInt(0));
                     i.putExtra("userid",c.getInt(0));

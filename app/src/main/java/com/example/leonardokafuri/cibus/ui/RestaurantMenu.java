@@ -114,12 +114,10 @@ public class RestaurantMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-<<<<<<< HEAD
 
                    // Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
 
-=======
->>>>>>> 707055f46352e87bf31d57a47eec4aca03481e23
+
 
                     int[] orderList = rmAdapter.getOrderQuantity();
 
