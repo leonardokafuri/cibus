@@ -47,12 +47,18 @@ public class Payment extends AppCompatActivity {
         Button submit = findViewById(R.id.submitOrd);
         final CheckBox saveCC = findViewById(R.id.saveCC);
         final Date currentTime = Calendar.getInstance().getTime();
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        final int id = sp.getInt("key1",0);
-        float f = sp.getFloat("totalprice",0);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        final int id = sharedPreferences.getInt("userId",0);
+
+        float f = sharedPreferences.getFloat("totalprice",0);
+
         final double totalPrice = ((double) f);
-        final DecimalFormat precision = new DecimalFormat("00.00");
-        final String RestName = sp.getString("name","");
+
+        final DecimalFormat priceFormat = new DecimalFormat("00.00");
+
+        final String RestName = sharedPreferences.getString("name","");
 
         Cursor c =dbh.getSavedCC(id);
         try{
@@ -118,18 +124,18 @@ public class Payment extends AppCompatActivity {
                         int currentpromoNum = promo.getInt(0);//get the user current promo code value
                         if (checkedId == R.id.pickup) {
                             if (currentpromoNum == 1) {// if user promo code is equals to 1 apply promo
-                                result.setText("Your total is " + (precision.format(totalPrice * 0.1)) + "\r\n" + "Promotion code is applied!");
+                                result.setText("Your total is " + (priceFormat.format(totalPrice * 0.1)) + "\r\n" + "Promotion code is applied!");
                                 promo = dbh.DeletePromoCode(id);
                             } else if (currentpromoNum == 0) {// if user promo code is equals to 0 no promo
-                                result.setText("Your total is " + precision.format(totalPrice));
+                                result.setText("Your total is " + priceFormat.format(totalPrice));
                             }
                         }
                         if (checkedId == R.id.delivery) {
                             if (currentpromoNum == 1) {
-                                result.setText("Your total is " + precision.format(((totalPrice * 0.1) + 3.99 + totalPrice)) + " ($3.99 delivery fee)" + "\r\n" + "Promotion code is applied!");
+                                result.setText("Your total is " + priceFormat.format(((totalPrice * 0.1) + 3.99 + totalPrice)) + " ($3.99 delivery fee)" + "\r\n" + "Promotion code is applied!");
                                 promo = dbh.DeletePromoCode(id);
                             } else if (currentpromoNum == 0) {
-                                result.setText("Your total is " + precision.format((totalPrice + 3.99)) + " ($3.99 delivery fee)");
+                                result.setText("Your total is " + priceFormat.format((totalPrice + 3.99)) + " ($3.99 delivery fee)");
                             }
                         }
                     }

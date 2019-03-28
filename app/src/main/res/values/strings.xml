@@ -27,7 +27,7 @@
     <string name="confirmaddrs">Confirm delivery Address</string>
     <string name="logo">restaurant logo</string>
     <string name="order">Order</string>
-    <string name="title4">Order History</string>
+    <string name="title_order_history">Order History</string>
     <string name="order_confirmation_screen_title">Your order details</string>
     <string name="title6">Promotion</string>
     <string name="order_confirmation_confirm_btn">Proceed to Payment</string>

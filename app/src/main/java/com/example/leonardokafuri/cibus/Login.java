@@ -70,7 +70,8 @@ public class Login extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = sharedPref.edit();
                     int id = c.getInt(0); // getting the user id that is currently using the app and saving its id on the shared pref file
-                    editor.putInt("key1",id);
+                    editor.putInt("userId",id);
+
                     editor.commit(); // the user id will alwayss be updated to the current user logged in
 
                     startActivity(i);

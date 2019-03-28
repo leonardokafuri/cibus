@@ -6,48 +6,116 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.ui.OrderConfirmation;
 import com.example.leonardokafuri.cibus.ui.Restaurants;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class History extends AppCompatActivity {
 
-    DatabaseHelper dbh;
+    private DatabaseHelper dbh;
+
+    private ListView listView;
+
+    private Button back;
+
+    private SharedPreferences sharedPreferences;
+
+    private String[] orderIDList,  timeList, amountList, restaurantList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        dbh = new DatabaseHelper(this);
-        Button back = findViewById(R.id.backhome);
-        TextView userHistory = findViewById(R.id.orders);
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        int id = sp.getInt("key1",0);//retriving which user is using the app by checking his id
+        dbh = new DatabaseHelper(this);
+
+        back = findViewById(R.id.backhome);
+
+        listView = findViewById(R.id.order_history_listview);
+
+        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
+
+        //retriving which user is using the app by checking his id
+        int id = sharedPreferences.getInt("userId",0);
+
 
         Cursor c = dbh.viewHistory(id);
-        StringBuilder str = new StringBuilder();
-            if (c.getCount() > 0) {
-                while (c.moveToNext()) {
-                    str.append(" Order ID : " + c.getString(0));
-                    str.append(" Restaurant Name : " + c.getString(2)+ "\r\n");
-                    str.append(" Time : " + c.getString(3) );
-                    str.append(" Amount : " + c.getString(4));
-                    str.append("\n");
-                    str.append("-----------------------------------------------------------------------------------------");
-                    str.append("\n");
-                }
-                userHistory.setText(str);
-            } else {
-                //display a toast message
-                Toast.makeText(History.this, "No orders found", Toast.LENGTH_SHORT).show();
+
+
+        if (c.getCount() > 0) {
+
+            orderIDList = new String[c.getCount()];
+            timeList  = new String[c.getCount()];
+            amountList = new String[c.getCount()];
+            restaurantList = new String[c.getCount()];
+
+
+            int index = 0;
+
+            while (c.moveToNext()){
+
+                    orderIDList[index] = "Order ID: "+c.getString(0);
+                    restaurantList[index] = "Restaurant: "+c.getString(2);
+                    timeList[index] = "Time: "+c.getString(3);
+                    amountList[index]= "Amount: "+c.getString(4);
+
+                index++;
             }
+
+            List<HashMap<String,String>> aList = new ArrayList<>();
+
+
+
+            //Han: put everything into four list
+            for (int i = 0; i < orderIDList.length; i++) {
+
+                HashMap<String, String> hm = new HashMap<String,String>();
+                hm.put("orderID",orderIDList[i]);
+                hm.put("restaurant", restaurantList[i]);
+                hm.put("time", timeList[i] );
+                hm.put("amount", amountList[i]);
+
+                aList.add(hm);
+            }
+
+
+            String[] from= {"orderID","restaurant","time", "amount"};
+            int[] to = {
+                    R.id.order_history_orderid,
+                    R.id.order_history_restaurant,
+                    R.id.order_history_order_time,
+                    R.id.order_history_order_amount
+            };
+
+            SimpleAdapter adapter = new SimpleAdapter(
+                    History.this,
+                    aList,
+                    R.layout.order_history_listview_item,
+                    from,
+                    to
+            );
+
+            listView.setAdapter(adapter);
+
+
+        } else {
+            //display a toast message
+            Toast.makeText(History.this, "No orders found", Toast.LENGTH_SHORT).show();
+        }
 
 
 
