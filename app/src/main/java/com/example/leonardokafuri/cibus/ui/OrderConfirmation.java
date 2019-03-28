@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.leonardokafuri.cibus.AccountInfo;
@@ -23,6 +25,8 @@ import com.example.leonardokafuri.cibus.utils.TestData;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class OrderConfirmation extends AppCompatActivity {
 
@@ -30,6 +34,8 @@ public class OrderConfirmation extends AppCompatActivity {
     private int[] orderList;
     //Han: store menu names
     private String[] menuList;
+
+    private double[] priceList;
 
     private  SharedPreferences sharedPreferences;
 
@@ -41,6 +47,8 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private Button proceed;
 
+    private EditText customerComment;
+
     private ListView listView;
 
     @Override
@@ -49,6 +57,10 @@ public class OrderConfirmation extends AppCompatActivity {
         setContentView(R.layout.activity_order_confirmation);
 
         proceed = findViewById(R.id.order_confirmation_btn_confirm);
+
+        customerComment = findViewById(R.id.order_confirmation_edittext_comments);
+
+        listView = findViewById(R.id.order_confirmation_listview);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -73,6 +85,8 @@ public class OrderConfirmation extends AppCompatActivity {
 
             menuList = new String[lengthOfOrderList];
 
+            priceList = new double[lengthOfOrderList];
+
             ArrayList<com.example.leonardokafuri.cibus.datamodel.Menu> tempList
                     = TestData.getListOfMenus(startingIndex);
 
@@ -90,15 +104,56 @@ public class OrderConfirmation extends AppCompatActivity {
                     stringBuilder.append(menuList[i] + " - " + orderList[i] + "\r\n");
             }
 
+            //Han: load prices to loca double[]
+            for (int i = 0; i < priceList.length; i++) {
+                priceList[i] = (double)sharedPreferences.getFloat("m"+String.valueOf(i),0);
+            }
+
             stringBuilder.append("Your total is: " + priceFormat.format(totalPrice));
-
-
-
-
 
 
         }
 
+        List<HashMap<String,String>> aList = new ArrayList<>();
+
+        for (int i = 0; i < menuList.length; i++) {
+
+            if(i == 0){
+                HashMap<String, String> hm = new HashMap<String,String>();
+                hm.put("name","Food");
+                hm.put("unitprice", "Unit Price");
+                hm.put("unit", "Qty" );
+                aList.add(hm);
+            }
+
+            //Han: only display ordered items
+            if(orderList[i]> 0){
+                HashMap<String, String> hm = new HashMap<String,String>();
+                hm.put("name",menuList[i]);
+                hm.put("unitprice", priceFormat.format(priceList[i]));
+                hm.put("unit", Integer.toString(orderList[i]) );
+                aList.add(hm);
+            }
+
+        }
+
+
+        String[] from= {"name","unitprice","unit"};
+        int[] to = {
+                R.id.order_confirmation_listview_menu,
+                R.id.order_confirmation_listview_unitPrice,
+                R.id.order_confirmation_listview_quantity
+        };
+
+        SimpleAdapter adapter = new SimpleAdapter(
+                OrderConfirmation.this,
+                        aList,
+                        R.layout.order_confirmation_listview_item,
+                        from,
+                        to
+        );
+
+        listView.setAdapter(adapter);
         //result.setText(stringBuilder);
 
 

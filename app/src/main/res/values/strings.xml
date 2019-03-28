@@ -4,6 +4,7 @@
     <string name="title">Welcome to Cibus</string>
     <string name="hint1">Username</string>
     <string name="hint2">Password</string>
+
     <string name="forgetbtn">Forgot password ?</string>
     <string name="login">Login</string>
     <string name="register">Register Here</string>
@@ -27,7 +28,7 @@
     <string name="logo">restaurant logo</string>
     <string name="order">Order</string>
     <string name="title4">Order History</string>
-    <string name="title5">Your order</string>
+    <string name="order_confirmation_screen_title">Your order details</string>
     <string name="title6">Promotion</string>
     <string name="order_confirmation_confirm_btn">Proceed to Payment</string>
     <string name="order_confirmation_customer_comment_hint">Any comment? </string>

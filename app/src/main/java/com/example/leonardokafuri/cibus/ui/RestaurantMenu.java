@@ -114,11 +114,13 @@ public class RestaurantMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    //todo, start to work from the totalprice here
+
                    // Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
 
 
                     int[] orderList = rmAdapter.getOrderQuantity();
+
+                    double[] menuPriceList = rmAdapter.getMenuPrice();
 
                     int counterForOrderList = 0;
 
@@ -138,6 +140,10 @@ public class RestaurantMenu extends AppCompatActivity {
                     //Han: store each order in sequence and pass to order conformation screen
                     for (int i = 0; i < orderList.length; i++) {
                         editor.putInt(String.valueOf(i), orderList[i]);
+                    }
+
+                    for (int i = 0; i < menuPriceList.length; i++) {
+                        editor.putFloat("m"+String.valueOf(i),(float)menuPriceList[i]);
                     }
 
                     editor.commit();

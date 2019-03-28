@@ -95,6 +95,17 @@ public class RestaurantMenu_Adapter
         return output;
     }
 
+    public double[] getMenuPrice(){
+
+        double[] output = new double[menus.size()];
+
+        for (int i = 0; i < output.length; i++) {
+            double thisUnitPrice = menus.get(i).getPricePerUnit();
+            output[i] = thisUnitPrice;
+        }
+        return output;
+    }
+
     public  int[]  getOrderQuantity(){
 
         return  selectionList;
