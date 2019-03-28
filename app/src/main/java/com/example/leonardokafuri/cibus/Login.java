@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.ui.OrderConfirmation;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class Login extends AppCompatActivity {
@@ -62,7 +63,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Intent i = new Intent(Login.this, ConfirmAddress.class);
+                    Intent i = new Intent(Login.this, OrderConfirmation.class);
                     c.moveToFirst();
                     dbh.setUserId(c.getInt(0));
                     i.putExtra("userid",c.getInt(0));
@@ -70,7 +71,7 @@ public class Login extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPref.edit();
                     int id = c.getInt(0); // getting the user id that is currently using the app and saving its id on the shared pref file
                     editor.putInt("key1",id);
-                    editor.commit();
+                    editor.commit(); // the user id will alwayss be updated to the current user logged in
 
                     startActivity(i);
                 }

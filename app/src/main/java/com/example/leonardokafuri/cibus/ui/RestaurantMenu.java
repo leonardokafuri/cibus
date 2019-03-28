@@ -114,9 +114,6 @@ public class RestaurantMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    //todo, start to work from the totalprice here
-                   // Toast.makeText(RestaurantMenu.this, "Total price is " + rmAdapter.getTotalPrice(), Toast.LENGTH_LONG).show();
-
 
                     int[] orderList = rmAdapter.getOrderQuantity();
 

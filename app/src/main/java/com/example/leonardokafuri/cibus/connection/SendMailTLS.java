@@ -212,29 +212,4 @@ public class SendMailTLS {
         }).start();
 
     }
-
-
-    /*
-    public static void sendEmail(String emailP, String token) {
-
-        final String username = "AKIAISND3ODXTV4JNATA";
-        final String password = "BFWcqBq42t6d0cqTQAXtPRYZkwqlztKTal08ZvCndAWW";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.starttls.required", "true");
-        props.put("mail.smtp.host","email-smtp.us-west-2.amazonaws.com");
-        props.put("mail.smtp.port", "587");
-        final String email = emailP;
-
-        final Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-
-
-    }*/
 }
