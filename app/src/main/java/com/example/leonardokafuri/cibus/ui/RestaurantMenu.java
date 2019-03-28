@@ -12,10 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.leonardokafuri.cibus.AccountInfo;
-import com.example.leonardokafuri.cibus.History;
-import com.example.leonardokafuri.cibus.Login;
-import com.example.leonardokafuri.cibus.Promotion;
 import com.example.leonardokafuri.cibus.datamodel.Menu;
 import com.example.leonardokafuri.cibus.datamodel.Restaurant;
 import com.example.leonardokafuri.cibus.R;

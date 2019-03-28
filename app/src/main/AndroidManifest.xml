@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.RestaurantMenu"></activity>
-        <activity android:name=".Login">
+        <activity android:name=".ui.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration" />
-        <activity android:name=".ForgotPassword" />
-        <activity android:name=".ConfirmAddress" />
+        <activity android:name=".ui.Registration" />
+        <activity android:name=".ui.ForgotPassword" />
+        <activity android:name=".ui.ConfirmAddress" />
 
 
         <activity android:name=".ui.Restaurants"
@@ -34,10 +34,10 @@
         </activity>
 
         <activity android:name=".ui.OrderConfirmation" />
-        <activity android:name=".Payment" />
-        <activity android:name=".History" />
-        <activity android:name=".Promotion" />
-        <activity android:name=".AccountInfo" />
+        <activity android:name=".ui.Payment" />
+        <activity android:name=".ui.History" />
+        <activity android:name=".ui.Promotion" />
+        <activity android:name=".ui.AccountInfo" />
 
     </application>
 

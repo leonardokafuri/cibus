@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class Registration extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class Registration extends AppCompatActivity {
                         Toast.makeText(Registration.this, "Something went wrong, please check your info and try again!", Toast.LENGTH_LONG).show();
                     else
                     {
-                        Intent i = new Intent(Registration.this,Login.class);
+                        Intent i = new Intent(Registration.this, Login.class);
                         i.putExtra("registered",username.getText().toString());
                         startActivity(i);
                     }

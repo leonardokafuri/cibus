@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.connection.SendMailTLS;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
@@ -82,16 +83,16 @@ public class Promotion extends AppCompatActivity {
         switch (id)
         {
             case R.id.home:
-                startActivity(new Intent(Promotion.this,AccountInfo.class));
+                startActivity(new Intent(Promotion.this, AccountInfo.class));
                 break;
             case R.id.History:
-                startActivity(new Intent(Promotion.this,History.class));
+                startActivity(new Intent(Promotion.this, History.class));
                 break;
             case R.id.Promotion:
                 Toast.makeText(this,"You already are on the Promotion Page",Toast.LENGTH_LONG).show();
                 break;
             case R.id.logout:
-                startActivity(new Intent(Promotion.this,Login.class));
+                startActivity(new Intent(Promotion.this, Login.class));
                 break;
         }
         return true;

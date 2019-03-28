@@ -1,8 +1,9 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +12,46 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.leonardokafuri.cibus.ui.OrderConfirmation;
+import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class Login extends AppCompatActivity {
 
     private DatabaseHelper dbh;
+    private int numOfTimesBackButtonPressed;
+    private Handler handlerBackPress;
+
+    @Override
+    public void onBackPressed() {
+
+        numOfTimesBackButtonPressed += 1;
+
+        //Han : the 1st time user click back button will pop up a msg,
+        //if user ignore the msg and click 2nd time within 2second after
+        //clicking of 1st on back button, they will be switch back to login screen
+        if(numOfTimesBackButtonPressed <= 1)
+        {
+            Toast.makeText(
+                    this,
+                    "Tap one more time to exit app.",
+                    Toast.LENGTH_SHORT).show();
+
+            handlerBackPress = new Handler();
+
+            final Runnable countDownTwoSecond = new Runnable() {
+                @Override
+                public void run() {
+                    numOfTimesBackButtonPressed -= 1;
+                }
+            };
+            handlerBackPress.postDelayed(countDownTwoSecond, 2000);
+        }else{
+            super.onBackPressed();
+
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +77,14 @@ public class Login extends AppCompatActivity {
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login.this,Registration.class));
+                startActivity(new Intent(Login.this, Registration.class));
             }
         });
 
         Forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login.this,ForgotPassword.class));
+                startActivity(new Intent(Login.this, ForgotPassword.class));
             }
         });
 
@@ -75,11 +110,13 @@ public class Login extends AppCompatActivity {
                     editor.commit(); // the user id will alwayss be updated to the current user logged in
 
                     startActivity(i);
+                    finish();
                 }
                 //then start the confirm address activity
 
             }
         });
+
 
     }
 }

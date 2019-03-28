@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,18 +12,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.leonardokafuri.cibus.ui.RestaurantMenu;
+
+import com.example.leonardokafuri.cibus.R;
 
 
-import com.example.leonardokafuri.cibus.ui.RestaurantMenu_Adapter;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -94,7 +92,7 @@ public class Payment extends AppCompatActivity {
                         else
                         {
                             Toast.makeText(Payment.this, "Credit Card successfully saved", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(Payment.this,History.class));
+                            startActivity(new Intent(Payment.this, History.class));
 
                         }
                     }catch(Exception e)
@@ -168,16 +166,16 @@ public class Payment extends AppCompatActivity {
         switch (id)
         {
             case R.id.home:
-                startActivity(new Intent(Payment.this,AccountInfo.class));
+                startActivity(new Intent(Payment.this, AccountInfo.class));
                 break;
             case R.id.History:
                 startActivity(new Intent(Payment.this,History.class));
                 break;
             case R.id.Promotion:
-                startActivity(new Intent(Payment.this,Promotion.class));
+                startActivity(new Intent(Payment.this, Promotion.class));
                 break;
             case R.id.logout:
-                startActivity(new Intent(Payment.this,Login.class));
+                startActivity(new Intent(Payment.this, Login.class));
                 break;
         }
         return true;

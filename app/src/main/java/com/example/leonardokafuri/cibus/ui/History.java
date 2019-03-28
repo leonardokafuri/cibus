@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,11 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.leonardokafuri.cibus.ui.OrderConfirmation;
-import com.example.leonardokafuri.cibus.ui.Restaurants;
+import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 import java.util.ArrayList;
@@ -144,16 +142,16 @@ public class History extends AppCompatActivity {
         switch (id)
         {
             case R.id.home:
-                startActivity(new Intent(History.this,AccountInfo.class));
+                startActivity(new Intent(History.this, AccountInfo.class));
                 break;
             case R.id.History:
                 Toast.makeText(this,"You already are on the Order History Page",Toast.LENGTH_LONG).show();
                 break;
             case R.id.Promotion:
-                startActivity(new Intent(History.this,Promotion.class));
+                startActivity(new Intent(History.this, Promotion.class));
                 break;
             case R.id.logout:
-                startActivity(new Intent(History.this,Login.class));
+                startActivity(new Intent(History.this, Login.class));
                 break;
         }
         return true;

@@ -10,11 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.leonardokafuri.cibus.AccountInfo;
 import com.example.leonardokafuri.cibus.datamodel.Restaurant;
-import com.example.leonardokafuri.cibus.History;
-import com.example.leonardokafuri.cibus.Login;
-import com.example.leonardokafuri.cibus.Promotion;
 import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.connection.RestaurantsAsyncTask;
 
@@ -81,6 +77,7 @@ public class Restaurants extends AppCompatActivity
         }else{
             //super.onBackPressed();
             startActivity(new Intent(Restaurants.this, Login.class));
+            finish();
         }
 
     }

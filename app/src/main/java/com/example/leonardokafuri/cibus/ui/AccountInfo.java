@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class AccountInfo extends AppCompatActivity {
@@ -97,13 +98,13 @@ public class AccountInfo extends AppCompatActivity {
                 Toast.makeText(this,"You already are on the Account Settings Page",Toast.LENGTH_LONG).show();
                 break;
             case R.id.History:
-                startActivity(new Intent(AccountInfo.this,History.class));
+                startActivity(new Intent(AccountInfo.this, History.class));
                 break;
             case R.id.Promotion:
-                startActivity(new Intent(AccountInfo.this,Promotion.class));
+                startActivity(new Intent(AccountInfo.this, Promotion.class));
                 break;
             case R.id.logout:
-                startActivity(new Intent(AccountInfo.this,Login.class));
+                startActivity(new Intent(AccountInfo.this, Login.class));
                 break;
         }
         return true;

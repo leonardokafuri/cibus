@@ -14,11 +14,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.example.leonardokafuri.cibus.AccountInfo;
-import com.example.leonardokafuri.cibus.History;
-import com.example.leonardokafuri.cibus.Login;
-import com.example.leonardokafuri.cibus.Payment;
-import com.example.leonardokafuri.cibus.Promotion;
 import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.utils.TestData;
 

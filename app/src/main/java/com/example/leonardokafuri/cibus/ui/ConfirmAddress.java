@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.leonardokafuri.cibus.ui.Restaurants;
+import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
 public class ConfirmAddress extends AppCompatActivity {
@@ -99,6 +99,7 @@ public class ConfirmAddress extends AppCompatActivity {
                 if(hasValuesChangedByUser()==true){
 
                     if(ifUserEnteredAllField()){
+
                         //save to database
                         String[] defaultAddr = saveNewValuesIntoString();
 
@@ -201,6 +202,7 @@ public class ConfirmAddress extends AppCompatActivity {
         output[5] =zipCode.getText().toString();
         output[6] =phoneNum.getText().toString();
 
+        //this value means default address
         output[7] = "1";
         return output;
     }

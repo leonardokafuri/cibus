@@ -1,4 +1,4 @@
-package com.example.leonardokafuri.cibus;
+package com.example.leonardokafuri.cibus.ui;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.leonardokafuri.cibus.R;
 import com.example.leonardokafuri.cibus.connection.SendMailTLS;
 import com.example.leonardokafuri.cibus.utils.DatabaseHelper;
 
@@ -65,7 +66,7 @@ public class ForgotPassword extends AppCompatActivity {
                     try{
                         dbh.resetPassword(email.getText().toString(),sendCode.getText().toString(),newPass.getText().toString());
                         Toast.makeText(ForgotPassword.this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ForgotPassword.this,Login.class));
+                        startActivity(new Intent(ForgotPassword.this, Login.class));
                     }
                     catch(Exception e)
                     {
